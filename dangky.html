@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dangky.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        function onclickDN(){
+            var tdnhap = document.getElementById("dangnhap");
+            var mkhau = document.getElementById("mkhau");
+            var sdt = document.getElementById("sdt");
+            var loi = document.getElementById("error");
+            var err="";
+            if(tdnhap.value.length <=  0){
+                err+="Bạn cần nhập tên đăng nhâp";
+                document.getElementById("errorDN").innerHTML="Bạn cần nhập tên tài khoan";
+                document.getElementById("dangnhap").style.borderBlockEndColor="red";
+            }else{
+                document.getElementById("errorDN").innerHTML="";
+            }
+            if(mkhau.value.length <= 0){
+                err+="Bạn cần nhập mật khẩu";
+                document.getElementById("errorMK").innerHTML="Bạn cần nhập mật khẩu";
+                document.getElementById("mkhau").style.borderBlockEndColor="red";
+                document.getElementById("errorMK").style.color="red";
+            }else{
+                var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[!@#\$%\^&\*])(?=.*[A-Z]))((?=.*[a-z])(?=.*[0-9]))((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+                if(mkhau.value.length > 0 && !mediumRegex.test(mkhau.value)){
+                    err +="Mật Khẩu Không Hợp Lệ";
+                    document.getElementById("errorMK").innerHTML="Mật Khẩu Không Hợp Lệ";
+                    document.getElementById("mkhau").style.borderBlockEndColor="red";
+                    document.getElementById("errorMK").style.color="red";
+                }else{
+                    document.getElementById("errorMK").innerHTML="Mật Khẩu Hợp Lệ";
+                    document.getElementById("errorMK").style.color="green";
+                }
+            }
+            var mediumRegex = new RegExp("^((?=.*[0-9])|(?=.*[0-9]))(?=.{10,})");
+            if(sdt.value.length <= 0){
+                err+="Bạn cần nhập số điện thoại";
+                document.getElementById("errorSDT").innerHTML="Bạn cần nhập số điện thoại";
+                document.getElementById("sdt").style.borderBlockEndColor="red";
+                document.getElementById("errorSDT").style.color="red";
+            }else{
+                if(!mediumRegex.test(sdt.value)){
+                    err +="Số Điện Thoại Không Hợp Lệ";
+                    document.getElementById("errorSDT").innerHTML="Số Điện Thoại Không Hợp Lệ";
+                    document.getElementById("sdt").style.borderBlockEndColor="red";
+                    document.getElementById("errorSDT").style.color="red";
+                }else{
+                    document.getElementById("errorSDT").innerHTML="Số Điện Thoại Hợp Lệ";
+                    document.getElementById("errorSDT").style.color="green";
+                }
+            }
+            if(err.length > 0){
+                //loi.innerHTML = err;
+                return false;
+            }else{
+                return true;
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="header1">
+            <p class="chu2" style=" color: wheat;">W</p>
+            <p style="color: rgb(37, 37, 37);" class="chu2">ATCHES</p>
+            <p class="chu3">Log In</p>
+            <p class="chu4">Need Help?</p>
+        </div>
+    </div>
+    <form action="webdh.html" method="get" onsubmit="return onclickDN()">
+        <div class="active">
+            <div class="trangchu">
+                <i class="fa-solid fa-bars"></i>
+                <a href="webdh.html">Trang Chủ</a>
+            </div>
+            <div class="formDN">
+                <div class="container13">
+                    <p style=" color: wheat;">W</p>
+                    <p class="chu4">ATCHES</p>
+                </div>
+                <div class="formDN1">
+                    <h1>Đăng Ký</h1>
+                    <label for="">Tên Tài Khoản:</label>
+                    <input type="text" name="dangnhap" id="dangnhap" placeholder="Tên tài khoản....."><br>
+                    <span id="errorDN"></span><br>
+                    <br>
+                    <label for="">Số Điện Thoại:</label>
+                    <input type="text" name="sdt" id="sdt" placeholder="Số điện thoại....."><br>
+                    <span id="errorSDT"></span><br>
+                    <label for="">Mật Khẩu:</label>
+                    <input type="password" name="mkhau" id="mkhau" placeholder="Mật khẩu....."><br>
+                    <span id="errorMK"></span><br>
+                    <div class="check">
+                        <input type="checkbox" name="" id="checkbox">
+                        <p class="chu5">Lưu đăng nhập</p>
+                    </div>
+                    <br>
+                    <button type="submit" name="btn" onclick="onclickDN()">Đăng Ký</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+</body>
+</html>
